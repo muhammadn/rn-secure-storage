@@ -149,20 +149,25 @@ RCT_EXPORT_METHOD(get:(NSString *)key
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
 {
-    @try {
+    //@try {
         [self handleAppUninstallation];
         NSString *value = [self searchKeychainCopyMatching:key];
+	/*
         if (value == nil) {
             NSString* errorMessage = @"key does not present";
             reject(@"404", errorMessage, secureKeyStoreError(errorMessage));
         } else {
             resolve(value);
+        } */
+	if (value){
+            resolve(value);
         }
-    }
+    //}
+    /*
     @catch (NSException *exception) {
         NSString* errorMessage = @"key does not present";
         reject(@"1", errorMessage, secureKeyStoreError(errorMessage));
-    }
+    } */
 }
 
 RCT_EXPORT_METHOD(remove:(NSString *)key
